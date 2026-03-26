@@ -111,11 +111,31 @@ use Illuminate\Support\Facades\Route;
 //     return "OOPS... BETTER LUCK NEXT TIME";
 // });
 
-Route::view('/', 'welcome');
-Route::view('/details', 'details')->name('details');
+// Route::view ('/', 'welcome');
+// Route::view('/details', 'details')->name('details');
 
-// passing values to the views
-Route::get('/',function(){
-    $courses= ["php",'c','c++','java','python'];
-    return view('details',['course'=>$courses]); 
+// // passing values to the views
+// Route::get('/',function(){
+//     $courses= ["php",'c','c++','java','python'];
+//     return view('details',['course'=>$courses]); 
+// });
+
+
+//steps of global view share static data
+// 1. create two views (manually or using artisan command)
+// 2. in web.php - create route for the views (like this)
+    // Route::view('/info1','info1');
+    // Route::view('/info2','info2');
+// 3. open appserviceprovide (app/providers/AppServiceProvider), import view at the top(use Illuminate\Support\Facades\View;)
+// 4. In boot function, use view::share
+// 5. write content in the views
+// 6. pass the values of key in the views
+// 7. run your url
+
+// Header Routing
+Route::get('/add-headers', function () {
+    return response("Headers attached")
+        ->header('app-name', 'student')
+        ->header('content-type', 'plain-text')
+        ->header('file-disposition', 'downloadable');
 });
