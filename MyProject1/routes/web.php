@@ -9,3 +9,4 @@ Route::get('/', function () {
 
 Route::get('/first', [firstController::class, 'show']);
 Route::get('/second/{id}', [firstController::class, 'display']);
+
